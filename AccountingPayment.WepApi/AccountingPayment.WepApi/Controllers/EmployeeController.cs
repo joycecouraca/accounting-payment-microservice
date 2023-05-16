@@ -1,10 +1,13 @@
 ﻿using AccountingPayment.Application.UserCases.Employee.Commands;
+using AccountingPayment.Application.UserCases.Employee.Querys;
 using AccountingPayment.Domain.Dtos.ApplicationResult;
 using AccountingPayment.Domain.Dtos.Employee.Request;
 using AccountingPayment.Domain.Dtos.Employee.Response;
 using AccountingPayment.WepApi.Controllers.ApiBase;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace AccountingPayment.WepApi.Controllers
 {
@@ -70,6 +73,44 @@ namespace AccountingPayment.WepApi.Controllers
                 var result = await _mediator.Send(new EmployeeDeleteCommand(employeeId));
 
                 if (!result.Success)
+                    return BadRequest(result);
+
+                return Ok(result);
+            });
+        }
+
+        [HttpGet]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status400BadRequest)]
+        public IActionResult GetAllEmployee()
+        {
+            return Execute(async () =>
+            {
+                var result = await _mediator.Send(new EmployeeGetAllQuery());
+
+                if (!result.Success && result.Errors!.Any(x => x.Code!.Equals("NotFound")))
+                    return NotFound(result);
+                else if (!result.Success)
+                    return BadRequest(result);
+
+                return Ok(result);
+            });
+        }
+
+        [HttpGet("{employeeId}")]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status400BadRequest)]
+        public IActionResult GetByIdEmployee([FromRoute] Guid employeeId)
+        {
+            return Execute(async () =>
+            {
+                var result = await _mediator.Send(new EmployeeGetByIdQuery(employeeId));
+
+                if (!result.Success && result.Errors!.Any(x => x.Code!.Equals("NotFound")))
+                    return NotFound(result);
+                else if (!result.Success)
                     return BadRequest(result);
 
                 return Ok(result);

@@ -8,7 +8,7 @@ namespace AccountingPayment.Infrastructure.Repository
     public class BaseRepository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly SqlDbContext _context;
-        private DbSet<T> _dataset;
+        public DbSet<T> _dataset;
         public BaseRepository(SqlDbContext context)
         {
             _context = context;
@@ -46,12 +46,12 @@ namespace AccountingPayment.Infrastructure.Repository
             return item;
         }
 
-        public async Task<T> SelectAsync(Guid id)
+        public virtual async Task<T> SelectAsync(Guid id)
         {
             return await _dataset.SingleOrDefaultAsync(p => p.Id.Equals(id));
         }
 
-        public async Task<IEnumerable<T>> SelectAsync()
+        public virtual async Task<IEnumerable<T>> SelectAsync()
         {
             return await _dataset.ToListAsync();
         }

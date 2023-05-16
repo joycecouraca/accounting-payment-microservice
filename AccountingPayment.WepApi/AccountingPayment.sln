@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingPayment.WepApi", "AccountingPayment.WepApi\AccountingPayment.WepApi.csproj", "{01D36FB5-9A93-4DE5-9021-A73A19B2C1A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountingPayment.WepApi", "AccountingPayment.WepApi\AccountingPayment.WepApi.csproj", "{01D36FB5-9A93-4DE5-9021-A73A19B2C1A9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{9B9FBC2B-A3D4-4C73-86BD-A9A577EF3ADF}"
 EndProject
@@ -11,17 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{5E555351-533D-498F-9268-213CB9A5693C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Interface", "1 - Interface", "{E2DFF7D7-8188-4F97-82BF-AAE1D6D59693}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Web Api", "1 - Web Api", "{E2DFF7D7-8188-4F97-82BF-AAE1D6D59693}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingPayment.Application", "AccountingPayment.Application\AccountingPayment.Application.csproj", "{16FA5668-2143-4201-97C5-9FBF064C9800}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountingPayment.Application", "AccountingPayment.Application\AccountingPayment.Application.csproj", "{16FA5668-2143-4201-97C5-9FBF064C9800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingPayment.Domain", "AccountingPayment.Domain\AccountingPayment.Domain.csproj", "{81633904-374C-45FE-B2F1-90DFB12733DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountingPayment.Domain", "AccountingPayment.Domain\AccountingPayment.Domain.csproj", "{81633904-374C-45FE-B2F1-90DFB12733DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingPayment.Infrastructure", "AccountingPayment.Infrastructure\AccountingPayment.Infrastructure.csproj", "{6B220938-0A59-4626-93F3-25D001C650B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountingPayment.Infrastructure", "AccountingPayment.Infrastructure\AccountingPayment.Infrastructure.csproj", "{6B220938-0A59-4626-93F3-25D001C650B1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - CrossCouting", "5 - CrossCouting", "{D3167148-3A4B-400B-9A6E-12E45CDFB7E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingPayment.CrossCutting", "AccountingPayment.CrossCounting\AccountingPayment.CrossCutting.csproj", "{C098E778-CD12-4A5D-897A-856A54986D93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountingPayment.CrossCutting", "AccountingPayment.CrossCounting\AccountingPayment.CrossCutting.csproj", "{C098E778-CD12-4A5D-897A-856A54986D93}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25AC0488-5AF4-4BAF-8B1B-C4C0458D5341}"
 	ProjectSection(SolutionItems) = preProject
