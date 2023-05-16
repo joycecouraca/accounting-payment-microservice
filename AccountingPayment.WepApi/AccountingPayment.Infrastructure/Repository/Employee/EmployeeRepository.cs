@@ -14,11 +14,11 @@ namespace AccountingPayment.Infrastructure.Repository.Employee
 
         public async override Task<IEnumerable<EmployeeEntity>> SelectAsync()
         {
-            return await _dataset.Include(c => c.Sector).ToListAsync();
+            return await _dataset.Include(c => c.Sector).Where(c => !c.Deleted).ToListAsync();
         }
         public async override Task<EmployeeEntity> SelectAsync(Guid id)
         {
-            return await _dataset.Include(c => c.Sector).SingleOrDefaultAsync(p => p.Id.Equals(id));
+            return await _dataset.Include(c => c.Sector).SingleOrDefaultAsync(p => p.Id.Equals(id) && !p.Deleted);
         }
 
     }
