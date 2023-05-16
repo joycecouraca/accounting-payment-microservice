@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AccountingPayment.WepApi.Controllers.ApiBase
+namespace AccountingPayment.WepApi.Configuration.ApiBase
 {
     [ApiController]
     [Route("api")]
@@ -23,7 +23,7 @@ namespace AccountingPayment.WepApi.Controllers.ApiBase
 
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }

@@ -1,5 +1,4 @@
-﻿using AccountingPayment.Application.UserCases.Employee.Mappers;
-using AccountingPayment.Domain.Dtos.ApplicationResult;
+﻿using AccountingPayment.Domain.Dtos.ApplicationResult;
 using AccountingPayment.Domain.Dtos.Employee.Request;
 using AccountingPayment.Domain.Dtos.Employee.Response;
 using AccountingPayment.Domain.Entities;
@@ -12,14 +11,13 @@ namespace AccountingPayment.Application.UserCases.Employee.Commands
 {
     public class EmployeeCreateCommandHandler : IRequestHandler<EmployeeCreateRequest, ApplicationResult<EmployeeResponse>>
     {
-        private IRepository<EmployeeEntity> _repositoryEmployee;
-        private IRepository<SectorEntity> _repositorySector;
+        private IEmployeeRepository<EmployeeEntity> _repositoryEmployee;
         private readonly IValidator<EmployeeCreateRequest> _validator;
-        public EmployeeCreateCommandHandler(IRepository<EmployeeEntity> repository, IValidator<EmployeeCreateRequest> validator, IRepository<SectorEntity> repositorySector)
+        public EmployeeCreateCommandHandler(IEmployeeRepository<EmployeeEntity> repositoryEmployee, IValidator<EmployeeCreateRequest> validator, IRepository<SectorEntity> repositorySector)
         {
-            _repositoryEmployee = repository;
+            _repositoryEmployee = repositoryEmployee;
             _validator = validator;
-            _repositorySector = repositorySector;
+
         }
 
         public async Task<ApplicationResult<EmployeeResponse>> Handle(EmployeeCreateRequest request, CancellationToken cancellationToken)
@@ -36,9 +34,9 @@ namespace AccountingPayment.Application.UserCases.Employee.Commands
 
             var result = await _repositoryEmployee.InsertAsync(employeeEntity);
 
-            var sector = await _repositorySector.SelectAsync(result.SectorId);
+            result = await _repositoryEmployee.SelectAsync(result.Id);
 
-            return new ApplicationResult<EmployeeResponse>().ReponseSuccess(result.EmployeeToDto(sector));
+            return new ApplicationResult<EmployeeResponse>().ReponseSuccess(result.Adapt<EmployeeResponse>());
         }
     }
 }

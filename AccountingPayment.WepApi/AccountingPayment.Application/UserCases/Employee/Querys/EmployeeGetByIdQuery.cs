@@ -1,5 +1,6 @@
 ﻿using AccountingPayment.Domain.Dtos.ApplicationResult;
 using AccountingPayment.Domain.Dtos.Employee.Response;
+using AccountingPayment.Domain.Entities;
 using AccountingPayment.Domain.Interfaces.Repository;
 using Mapster;
 using MediatR;
@@ -10,9 +11,9 @@ namespace AccountingPayment.Application.UserCases.Employee.Querys
 
     public class EmployeeGetByIdQueryHandler : IRequestHandler<EmployeeGetByIdQuery, ApplicationResult<EmployeeResponse>>
     {
-        private IEmployeeRepository _repositoryEmployee;
+        private IEmployeeRepository<EmployeeEntity> _repositoryEmployee;
 
-        public EmployeeGetByIdQueryHandler(IEmployeeRepository repositoryEmployee)
+        public EmployeeGetByIdQueryHandler(IEmployeeRepository<EmployeeEntity> repositoryEmployee)
         {
             _repositoryEmployee = repositoryEmployee;
         }

@@ -1,5 +1,6 @@
 ﻿using AccountingPayment.Domain.Dtos.ApplicationResult;
 using AccountingPayment.Domain.Dtos.Employee.Response;
+using AccountingPayment.Domain.Entities;
 using AccountingPayment.Domain.Interfaces.Repository;
 using Mapster;
 using MediatR;
@@ -10,9 +11,9 @@ namespace AccountingPayment.Application.UserCases.Employee.Querys
 
     public class EmployeeGetAllQueryHandler : IRequestHandler<EmployeeGetAllQuery, ApplicationResult<IEnumerable<EmployeeResponse>>>
     {
-        private IEmployeeRepository _repositoryEmployee;
+        private IEmployeeRepository<EmployeeEntity> _repositoryEmployee;
 
-        public EmployeeGetAllQueryHandler(IEmployeeRepository repositoryEmployee)
+        public EmployeeGetAllQueryHandler(IEmployeeRepository<EmployeeEntity> repositoryEmployee)
         {
             _repositoryEmployee = repositoryEmployee;
         }

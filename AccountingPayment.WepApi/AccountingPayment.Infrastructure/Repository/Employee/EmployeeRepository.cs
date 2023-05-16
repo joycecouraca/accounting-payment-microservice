@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AccountingPayment.Infrastructure.Repository.Employee
 {
-    public class EmployeeRepository : BaseRepository<EmployeeEntity>, IEmployeeRepository
+    public class EmployeeRepository : BaseRepository<EmployeeEntity>, IEmployeeRepository<EmployeeEntity>
     {
         public EmployeeRepository(SqlDbContext context) : base(context)
         {

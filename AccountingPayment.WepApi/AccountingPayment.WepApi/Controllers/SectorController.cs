@@ -1,8 +1,8 @@
-﻿using AccountingPayment.Application.UserCases.Employee.Commands;
-using AccountingPayment.Application.UserCases.Employee.Querys;
+﻿using AccountingPayment.Application.UserCases.Sector.Commands;
+using AccountingPayment.Application.UserCases.Sector.Querys;
 using AccountingPayment.Domain.Dtos.ApplicationResult;
-using AccountingPayment.Domain.Dtos.Employee.Request;
-using AccountingPayment.Domain.Dtos.Employee.Response;
+using AccountingPayment.Domain.Dtos.Sector.Request;
+using AccountingPayment.Domain.Dtos.Sector.Response;
 using AccountingPayment.WepApi.Configuration.ApiBase;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -11,19 +11,19 @@ namespace AccountingPayment.WepApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeController : ApiControllerBase
+    public class SectorController : ApiControllerBase
     {
-        public EmployeeController(ISender mediator) : base(mediator)
+        public SectorController(ISender mediator) : base(mediator)
         {
         }
 
         [HttpPost]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(ApplicationResult<EmployeeResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApplicationResult<SectorResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status404NotFound)]
 
-        public IActionResult CreateEmployee([FromBody] EmployeeCreateRequest command)
+        public IActionResult CreateSector([FromBody] SectorCreateRequest command)
         {
             return Execute(async () =>
             {
@@ -38,11 +38,11 @@ namespace AccountingPayment.WepApi.Controllers
 
         [HttpPut]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(ApplicationResult<EmployeeResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApplicationResult<SectorResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status404NotFound)]
 
-        public IActionResult UpdateEmployee([FromBody] EmployeeUpdateRequest command)
+        public IActionResult UpdateSector([FromBody] SectorUpdateRequest command)
         {
             return Execute(async () =>
             {
@@ -58,17 +58,17 @@ namespace AccountingPayment.WepApi.Controllers
             });
         }
 
-        [HttpDelete("{employeeId}")]
+        [HttpDelete("{sectorId}")]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(ApplicationResult<EmployeeResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApplicationResult<SectorResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status404NotFound)]
 
-        public IActionResult DeleteEmployee([FromRoute] Guid employeeId)
+        public IActionResult DeleteSector([FromRoute] Guid sectorId)
         {
             return Execute(async () =>
             {
-                var result = await _mediator.Send(new EmployeeDeleteCommand(employeeId));
+                var result = await _mediator.Send(new SectorDeleteCommand(sectorId));
 
                 if (!result.Success)
                     return BadRequest(result);
@@ -81,11 +81,11 @@ namespace AccountingPayment.WepApi.Controllers
         [Produces("application/json")]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status400BadRequest)]
-        public IActionResult GetAllEmployee()
+        public IActionResult GetAllSector()
         {
             return Execute(async () =>
             {
-                var result = await _mediator.Send(new EmployeeGetAllQuery());
+                var result = await _mediator.Send(new SectorGetAllQuery());
 
                 if (!result.Success && result.Errors!.Any(x => x.Code!.Equals("NotFound")))
                     return NotFound(result);
@@ -96,15 +96,15 @@ namespace AccountingPayment.WepApi.Controllers
             });
         }
 
-        [HttpGet("{employeeId}")]
+        [HttpGet("{sectorId}")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status400BadRequest)]
-        public IActionResult GetByIdEmployee([FromRoute] Guid employeeId)
+        public IActionResult GetByIdSector([FromRoute] Guid sectorId)
         {
             return Execute(async () =>
             {
-                var result = await _mediator.Send(new EmployeeGetByIdQuery(employeeId));
+                var result = await _mediator.Send(new SectorGetByIdQuery(sectorId));
 
                 if (!result.Success && result.Errors!.Any(x => x.Code!.Equals("NotFound")))
                     return NotFound(result);

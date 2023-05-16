@@ -9,15 +9,15 @@ namespace AccountingPayment.Application.UserCases.Employee.Commands
 
     public class EmployeeDeleteCommandHandler : IRequestHandler<EmployeeDeleteCommand, ApplicationResult<bool>>
     {
-        private IRepository<EmployeeEntity> _repository;
-        public EmployeeDeleteCommandHandler(IRepository<EmployeeEntity> repository)
+        private IEmployeeRepository<EmployeeEntity> _repositoryEmployee;
+        public EmployeeDeleteCommandHandler(IEmployeeRepository<EmployeeEntity> repositoryEmployee)
         {
-            _repository = repository;
+            _repositoryEmployee = repositoryEmployee;
         }
 
         public async Task<ApplicationResult<bool>> Handle(EmployeeDeleteCommand request, CancellationToken cancellationToken)
         {
-            var result = await _repository.DeleteAsync(request.employeeId);
+            var result = await _repositoryEmployee.DeleteAsync(request.employeeId);
 
             return new ApplicationResult<bool>().ReponseSuccess(result);
         }

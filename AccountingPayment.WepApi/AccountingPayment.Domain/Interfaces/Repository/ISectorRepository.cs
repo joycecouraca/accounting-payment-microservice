@@ -2,7 +2,7 @@
 
 namespace AccountingPayment.Domain.Interfaces.Repository
 {
-    public interface IEmployeeRepository<T> : IRepository<T> where T : EmployeeEntity
+    public interface ISectorRepository<T> : IRepository<T> where T : SectorEntity
     {
     }
 }

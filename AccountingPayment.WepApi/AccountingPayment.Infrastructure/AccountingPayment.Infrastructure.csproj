@@ -21,8 +21,4 @@
 		<ProjectReference Include="..\AccountingPayment.Domain\AccountingPayment.Domain.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Repository\Sector\" />
-	</ItemGroup>
-
 </Project>
