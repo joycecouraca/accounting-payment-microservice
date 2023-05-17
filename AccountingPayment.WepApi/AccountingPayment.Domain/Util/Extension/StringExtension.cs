@@ -1,4 +1,6 @@
-﻿namespace AccountingPayment.Domain.Util.Extension
+﻿using System.Globalization;
+
+namespace AccountingPayment.Domain.Util.Extension
 {
     public static class StringExtension
     {
@@ -37,6 +39,29 @@
             int resto = soma % 11;
 
             return resto < 2 ? 0 : 11 - resto;
+        }
+
+        public static string? ToCamelCase(this string? str)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return str;
+            }
+
+            var cultureInfo = CultureInfo.CurrentCulture;
+            var textInfo = cultureInfo.TextInfo;
+            var words = str.Split(' ', '-', '_', '.');
+            var newWords = new List<string>();
+
+            foreach (var word in words)
+            {
+                if (word.Length > 0)
+                {
+                    newWords.Add(char.ToUpperInvariant(word[0]) + word.Substring(1));
+                }
+            }
+
+            return string.Join("", newWords);
         }
     }
 }

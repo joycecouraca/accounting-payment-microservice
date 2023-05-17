@@ -13,7 +13,7 @@ namespace AccountingPayment.Application.UserCases.Employee.Commands
     {
         private IEmployeeRepository<EmployeeEntity> _repositoryEmployee;
         private readonly IValidator<EmployeeCreateRequest> _validator;
-        public EmployeeCreateCommandHandler(IEmployeeRepository<EmployeeEntity> repositoryEmployee, IValidator<EmployeeCreateRequest> validator, IRepository<SectorEntity> repositorySector)
+        public EmployeeCreateCommandHandler(IEmployeeRepository<EmployeeEntity> repositoryEmployee, IValidator<EmployeeCreateRequest> validator)
         {
             _repositoryEmployee = repositoryEmployee;
             _validator = validator;
