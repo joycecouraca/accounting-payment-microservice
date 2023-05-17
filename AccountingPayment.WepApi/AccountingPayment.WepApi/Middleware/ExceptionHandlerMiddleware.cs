@@ -1,16 +1,17 @@
-﻿using System.Net;
+﻿using AccountingPayment.Domain.Interfaces.ApplicationInsights;
+using System.Net;
 using System.Text.Json;
-
 
 namespace AccountingPayment.WepApi.Middleware
 {
     public class ExceptionHandlerMiddleware
     {
         private readonly RequestDelegate _next;
-
-        public ExceptionHandlerMiddleware(RequestDelegate next)
+        private readonly ICustomLog _logger;
+        public ExceptionHandlerMiddleware(RequestDelegate next, ICustomLog logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -21,6 +22,7 @@ namespace AccountingPayment.WepApi.Middleware
             }
             catch (Exception ex)
             {
+                _logger.ErrorLog(ex);
                 await HandleExceptionAsync(context, ex);
             }
         }

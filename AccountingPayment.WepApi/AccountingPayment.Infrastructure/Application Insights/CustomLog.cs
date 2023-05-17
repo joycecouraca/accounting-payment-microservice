@@ -27,18 +27,12 @@ namespace AccountingPayment.Infrastructure.ApplicationInsights.CustomLog
             _telemetryClient.Context.GlobalProperties.Add("ApplicationName", applicationName);
         }
 
+
         public void ErrorLog(Exception exception, Guid? employeeId = null)
         {
             SetEmployeeId(employeeId);
 
-            _telemetryClient.TrackException(exception);
-        }
-
-        public void ErrorLog(string message, Guid? employeeId = null)
-        {
-            SetEmployeeId(employeeId);
-
-            _telemetryClient.TrackTrace(message, Microsoft.ApplicationInsights.DataContracts.SeverityLevel.Error);
+            _telemetryClient.TrackTrace(exception.Message, Microsoft.ApplicationInsights.DataContracts.SeverityLevel.Error);
         }
 
         public void InformationLog(object customObject, Guid? employeeId = null)

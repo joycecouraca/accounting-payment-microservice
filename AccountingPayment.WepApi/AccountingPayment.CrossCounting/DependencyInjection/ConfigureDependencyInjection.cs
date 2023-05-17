@@ -1,6 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AccountingPayment.Application.DependencyInjetion;
+using AccountingPayment.Domain.Interfaces.ApplicationInsights;
+using AccountingPayment.Infrastructure.ApplicationInsights.CustomLog;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AccountingPayment.Application.DependencyInjetion;
+
 namespace AccountingPayment.CrossCutting.DependencyInjection
 {
     public static class ConfigureDependencyInjection
@@ -10,11 +13,10 @@ namespace AccountingPayment.CrossCutting.DependencyInjection
 
             services.ConfigureDependenciesDbContext(configuration);
             services.ConfigureDependenciesRepository();
-            services.ConfigureDependenciesAutoMapper();
-
             services.ConfigureDependencyApplicationInjection();
+
+            services.AddTransient<ICustomLog, CustomLog>();
             return services;
         }
-
     }
 }

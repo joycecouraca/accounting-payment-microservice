@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace AccountingPayment.Domain.Dtos.ApplicationResult
+﻿namespace AccountingPayment.Domain.Dtos.ApplicationResult
 {
     public class ApplicationError
     {

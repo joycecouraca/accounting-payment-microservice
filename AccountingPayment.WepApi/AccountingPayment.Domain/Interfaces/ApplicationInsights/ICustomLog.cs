@@ -6,8 +6,6 @@
 
         public void InformationLog(string message, Guid? employeeId = null);
 
-        public void ErrorLog(string message, Guid? employeeId = null);
-
         public void ErrorLog(Exception exception, Guid? employeeId = null);
     }
 }

@@ -1,15 +1,14 @@
 using AccountingPayment.Domain.Entities;
 using AccountingPayment.Domain.Interfaces.Repository;
-using AccountingPayment.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace AccountingPayment.Infrastructure.Repository
 {
     public class BaseRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly SqlDbContext _context;
+        private readonly DbContext _context;
         public DbSet<T> _dataset;
-        public BaseRepository(SqlDbContext context)
+        public BaseRepository(DbContext context)
         {
             _context = context;
             _dataset = _context.Set<T>();
