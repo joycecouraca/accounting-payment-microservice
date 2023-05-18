@@ -82,7 +82,7 @@ namespace AccountingPayment.WepApi.Controllers
 
         [HttpGet]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(ApplicationResult<List<string?>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApplicationResult<List<SectorResponse>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApplicationResult<List<string?>>), StatusCodes.Status400BadRequest)]
         public IActionResult GetAllSector()
         {
@@ -101,7 +101,7 @@ namespace AccountingPayment.WepApi.Controllers
 
         [HttpGet("{sectorId}")]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApplicationResult<SectorResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status400BadRequest)]
         public IActionResult GetByIdSector([FromRoute] Guid sectorId)
         {

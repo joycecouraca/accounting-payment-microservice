@@ -82,7 +82,7 @@ namespace AccountingPayment.WepApi.Controllers
 
         [HttpGet]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApplicationResult<EmployeeResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status400BadRequest)]
         public IActionResult GetAllEmployee()
         {
@@ -102,7 +102,7 @@ namespace AccountingPayment.WepApi.Controllers
 
         [HttpGet("{employeeId}")]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApplicationResult<EmployeeResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApplicationResult<string?>), StatusCodes.Status400BadRequest)]
         public IActionResult GetByIdEmployee([FromRoute] Guid employeeId)
         {
